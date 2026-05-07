@@ -1,55 +1,64 @@
-# Pipeline ETL: Universidades e Meios de Pagamento
+# Pipeline ETL: IBGE Desocupação
 
-Este projeto é um pipeline **ETL (Extract, Transform, Load)** desenvolvido em Python. O objetivo principal é consumir dados de diferentes APIs públicas e carregá-los em diferentes tecnologias de banco de dados (SQLite e MongoDB).
+Este projeto é um pipeline **ETL (Extract, Transform, Load)** desenvolvido em Python com **Prefect** para orquestração. O objetivo é extrair dados de taxa de desocupação do **IBGE** e carregar em **MongoDB Atlas**.
 
 ## 🎯 Funcionalidades
 
 - **Extração (Extract):**
-  - Dados de universidades ao redor do mundo a partir do país (utilizando a API pública do [HipoLabs](http://universities.hipolabs.com/)).
-  - Dados sobre os meios de pagamento trimestrais no Brasil (utilizando a API de Dados Abertos do **Banco Central do Brasil**).
+  - Dados de taxa de desocupação do IBGE.
 - **Carregamento (Load):**
-  - Carga de dados tabulares em banco de dados relacional local usando **SQLite**.
-  - Carga de dados (JSON/documentos) em banco de dados NoSQL na nuvem utilizando **MongoDB Atlas**.
+  - Carga de dados em banco de dados NoSQL usando **MongoDB Atlas**.
+- **Orquestração:**
+  - Prefect para executar o pipeline e registrar logs.
 
 ## 📂 Estrutura do Projeto
 
 ```
-etl-uni/
+etl-ibge-desocupacao/
 │
-├── main.py               # Script principal que orquestra o fluxo ETL
-├── teste.py              # Script local para testes de requisição da API
-├── .env                  # Variáveis de ambiente com credenciais (não versionado)
+├── orchestrate.py        # Script principal com o flow Prefect
+├── main.py               # Script auxiliar para testar a extração e carga
+├── .env.example          # Exemplo de variáveis de ambiente
 │
 └── src/
-    ├── extract.py        # Módulo contendo as funções de extração (requests)
-    └── load.py           # Módulo contendo as funções de carga de banco de dados
+    ├── extract.py        # Módulo com a extração dos dados do IBGE
+    ├── load.py           # Módulo com a carga no MongoDB
+    └── __init__.py       # Inicializador do pacote
 ```
 
 ## 🚀 Como Executar
 
 ### 1. Pré-requisitos
-- Python 3.10 ou superior
+- Python 3.12 ou superior
 - O gerenciador de pacotes `pip`
-- Uma conta no MongoDB Atlas com um cluster (ex: `Cluster0`) e permissões configuradas.
+- Uma conta no MongoDB Atlas com a URI de conexão.
 
 ### 2. Instalação e Configuração
 
-Crie um ambiente virtual (recomendado) e instale as dependências:
+Crie um ambiente virtual e instale as dependências:
 ```bash
 python -m venv .venv
 source .venv/bin/activate  # ou .venv\Scripts\activate no Windows
 pip install -r requirements.txt
 ```
 
-Crie um arquivo `.env` na raiz do seu projeto e adicione as suas credenciais do MongoDB:
+Crie um arquivo `.env` na raiz do projeto com a URI do MongoDB Atlas:
 ```env
-DB_USER=seu_usuario_do_mongo
-DB_PASSWORD=sua_senha_do_mongo
+MONGO_URI=sua_uri_do_mongodb_atlas
 ```
 
 ### 3. Rodando o Pipeline
 
-Basta executar o arquivo principal:
+Para executar o flow com Prefect:
 ```bash
-python main.py
+python orchestrate.py
 ```
+
+### 4. Dashboard Prefect
+
+Se quiser monitorar com dashboard, rode:
+```bash
+prefect server start
+```
+
+Depois acesse `http://127.0.0.1:4200`.
