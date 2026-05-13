@@ -47,18 +47,20 @@ Crie um arquivo `.env` na raiz do projeto com a URI do MongoDB Atlas:
 MONGO_URI=sua_uri_do_mongodb_atlas
 ```
 
-### 3. Rodando o Pipeline
+### 3. Iniciando o servidor Prefect
 
-Para executar o flow com Prefect:
-```bash
-python orchestrate.py
-```
-
-### 4. Dashboard Prefect
-
-Se quiser monitorar com dashboard, rode:
+Suba o servidor de monitoramento **antes** de rodar o pipeline:
 ```bash
 prefect server start
 ```
 
-Depois acesse `http://127.0.0.1:4200`.
+Deixe esse terminal aberto e acesse `http://127.0.0.1:4200` para ver o dashboard.
+
+### 4. Rodando o Pipeline
+
+Em **outro terminal** (com o `.venv` ativado), execute o flow:
+```bash
+python orchestrate.py
+```
+
+O run vai aparecer no dashboard em tempo real com logs e status de cada task.
