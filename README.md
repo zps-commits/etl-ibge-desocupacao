@@ -213,6 +213,7 @@ Ver [evidencias/README.md](evidencias/README.md) para instruções de como gerar
 
 - Gabriel Costa
 - João Souza
+- Lucas Collier
 - Renan Caminha
 - Thiago Alves
 - Vinicius Queiroz
