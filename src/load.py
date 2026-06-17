@@ -1,4 +1,5 @@
 import os
+import certifi
 from dotenv import load_dotenv
 from pymongo import MongoClient, UpdateOne
 from pymongo.server_api import ServerApi
@@ -15,7 +16,7 @@ class Load:
         if not self.mongo_uri:
             raise ValueError("A variável MONGO_URI não foi encontrada no arquivo .env")
 
-        client = MongoClient(self.mongo_uri, server_api=ServerApi("1"))
+        client = MongoClient(self.mongo_uri, server_api=ServerApi("1"), tlsCAFile=certifi.where())
 
         try:
             client.admin.command("ping")
