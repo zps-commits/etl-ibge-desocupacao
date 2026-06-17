@@ -1,0 +1,6 @@
+Indicador : taxa_desocupacao
+Localidade: Pernambuco
+Categoria : Mulheres
+Período   : 2026T01
+Valor     : 11.1%
+Coletado  : 2026-06-17T19:44:01.119059+00:00

@@ -3,6 +3,7 @@ python-dotenv==1.2.2
 certifi==2026.6.17
 pymongo==4.17.0
 prefect==3.7.4
+fastapi==0.115.12
 fastmcp==3.4.2
 streamlit==1.58.0
 openai==2.41.1
