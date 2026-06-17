@@ -1,19 +1,19 @@
 ==================================================
 ETL - Indicadores de Emprego IBGE (PNAD Contínua)
-Início: 2026-06-17T19:44:00.685029+00:00
+Início: 2026-06-17T20:04:09.202560+00:00
 ==================================================
 
 [1/3] Extraindo dados da API do IBGE...
 
 [2/3] Transformando dados...
 Total de registros: 396
-Indicadores: taxa_desocupacao, taxa_informalidade, taxa_participacao
-Categorias: Homens, Mulheres, Total
+Indicadores: taxa_desocupacao, taxa_participacao, taxa_informalidade
+Categorias: Total, Homens, Mulheres
 
 [3/3] Carregando dados no MongoDB Atlas...
 Conectado ao MongoDB Atlas com sucesso!
-Inseridos: 0
-Atualizados: 396
-Total de documentos na coleção: 684
+Inseridos: 396
+Atualizados: 0
+Total de documentos na coleção: 396
 
 ETL concluída com sucesso!

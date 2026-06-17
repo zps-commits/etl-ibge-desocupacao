@@ -2,6 +2,7 @@ from fastmcp import FastMCP
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 from dotenv import load_dotenv
+import certifi
 import os
 
 load_dotenv()
@@ -12,7 +13,7 @@ MONGO_URI = os.getenv("MONGO_URI")
 
 
 def _get_collection():
-    client = MongoClient(MONGO_URI, server_api=ServerApi("1"))
+    client = MongoClient(MONGO_URI, server_api=ServerApi("1"), tlsCAFile=certifi.where())
     return client["desocupacao"]["taxa_desocupacao"]
 
 
